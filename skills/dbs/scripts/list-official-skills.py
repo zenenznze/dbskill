@@ -26,7 +26,7 @@ def read_frontmatter_description(skill_path: Path) -> str:
             continue
 
         value = line.removeprefix("description:").strip()
-        if value not in {"", "|", ">"}:
+        if value not in {"", "|", ">", "|-", ">-"}:
             return value.strip('"\'')
 
         parts: list[str] = []
@@ -38,7 +38,8 @@ def read_frontmatter_description(skill_path: Path) -> str:
             stripped = continuation.strip()
             if stripped:
                 parts.append(stripped)
-        return " ".join(parts)
+        separator = " " if value in {">", ">-"} else "\n"
+        return separator.join(parts)
 
     return ""
 

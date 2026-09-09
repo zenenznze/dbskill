@@ -41,7 +41,7 @@ access token 和 account id 只能在进程内使用，不能写入仓库、日�
 - `title`、`description` 等展示字段可能随上游变化。
 
 后端可能只返回部分详情行，所以 `credits.length` 不能代替 `available_count`。脚本
-只向用户展示 ID 尾号，执行时按到期时间排序后在进程内使用完整 ID。
+不向用户展示 credit ID；执行时按到期时间排序，并只在进程内使用完整 ID。
 
 ## 消耗字段
 

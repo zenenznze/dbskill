@@ -55,6 +55,7 @@ rendered = json.dumps(result, ensure_ascii=False)
 assert "dummy-bearer" not in rendered
 assert "dummy-account" not in rendered
 assert "fixture-credit-earlier-12345678" not in rendered
+assert "12345678" not in rendered
 
 with tempfile.TemporaryDirectory() as directory:
     auth_path = Path(directory) / "auth.json"

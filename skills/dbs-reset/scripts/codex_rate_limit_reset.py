@@ -197,7 +197,6 @@ def normalize_credit(credit: Any, zone: dt.tzinfo) -> dict[str, Any] | None:
         "reset_type": pick(credit, "reset_type", "resetType") or "unknown",
         "granted_at": format_time(pick(credit, "granted_at", "grantedAt"), zone),
         "expires_at": format_time(pick(credit, "expires_at", "expiresAt"), zone),
-        "title": pick(credit, "title") if isinstance(pick(credit, "title"), str) else None,
     }
 
 

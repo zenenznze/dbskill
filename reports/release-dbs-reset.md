@@ -16,7 +16,7 @@ secret_scan.sh skills/dbs-reset                      PASS
 check-marketplace-scope.py                           PASS
 check-skill-metadata.py                              PASS
 check-skill-routing-contract.py                      PASS
-check-release-versions.py                            PASS (v2.18.42)
+check-release-versions.py                            PASS (v2.18.43)
 check-plugin-update-contract.py --publish             PASS
 check-dbs-update-check.sh                            PASS
 test-dbs-install-skill.sh                            PASS
@@ -33,10 +33,13 @@ python3 skills/dbs-reset/scripts/codex_rate_limit_reset.py check --human
 python3 skills/dbs-reset/scripts/codex_rate_limit_reset.py consume --dry-run
 ```
 
-结果：本机只读查询和 dry-run 均成功；窗口、可用数量和详情到期时间均可读。动态账户数值不写入仓库。dry-run 能选择最早到期的可用 credit，但只发出 GET，不发出 consume POST。
+结果：本机只读查询和 dry-run 均成功；5 小时与 weekly 窗口、可用数量和详情到期时间均可读。动态账户数值不写入仓库；dry-run 能选择最早到期的可用 credit，但只发出 GET，不发出 consume POST。
 
 另执行无确认保护测试：`consume` 未带 `--confirm` 在网络请求前以退出码 2 拒绝，未执行任何实际 reset。
 
-## 发布边界
+## 隐私复核
 
-本轮没有真实消耗 reset credit，没有修改本机 `auth.json`，没有保存 access token、account ID、完整 credit ID 或原始上游响应。
+- 真实 `check` 与 `consume --dry-run` 输出不包含任何 credit 标识。
+- 仓库内没有写入本机动态账户数量、窗口数值、到期时间、access token、account ID 或原始响应。
+- 测试只使用明确的 dummy fixture；历史与当前 reset 相关路径均未发现凭证样式字符串、私钥头或带凭证 URL。
+- 本轮没有真实消耗 reset credit，没有修改本机 `auth.json`，没有保存 access token、account ID、credit ID 或原始上游响应。

@@ -1,5 +1,5 @@
 {
-  "version": "2.18.42",
-  "notice": "收紧 DBS 路由边界，并让 dbs-reset 只保留官方 Codex 配额逻辑",
+  "version": "2.18.43",
+  "notice": "完成 dbs-reset 隐私审计，查询输出不再暴露 credit 标识或动态账户数值",
   "details_url": "https://github.com/dontbesilent2025/dbskill/commits/main"
 }

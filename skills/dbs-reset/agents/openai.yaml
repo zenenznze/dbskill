@@ -1,0 +1,4 @@
+interface:
+  display_name: "dbs-reset"
+  short_description: "查询 Codex 配额与可用 Reset Credit，不默认执行重置"
+  default_prompt: "使用 $dbs-reset，查询本机 Codex 配额与可用 reset credit；除非我明确确认，不要实际消耗。"

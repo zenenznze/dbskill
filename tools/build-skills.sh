@@ -35,7 +35,7 @@ group_for() {
       echo "进阶-状态管理" ;;
     dbs-decision)
       echo "进阶-决策系统" ;;
-    dbs-agent-migration|dbs-install-skill|dbs-skill-maker)
+    dbs-agent-migration|dbs-install-skill|dbs-skill-maker|dbs-reset)
       echo "进阶-Agent基建" ;;
     dbs-learning)
       echo "进阶-学习" ;;

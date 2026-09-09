@@ -57,7 +57,7 @@ def read_scalar(frontmatter: str, field: str) -> str:
             continue
 
         value = line[len(prefix) :].strip()
-        if value not in {"|", ">"}:
+        if value not in {"|", ">", "|-", ">-"}:
             return value.strip("\"'")
 
         content: list[str] = []
@@ -65,7 +65,7 @@ def read_scalar(frontmatter: str, field: str) -> str:
             if continuation and not continuation[0].isspace():
                 break
             content.append(continuation[2:] if continuation.startswith("  ") else continuation)
-        separator = "\n" if value == "|" else " "
+        separator = "\n" if value.startswith("|") else " "
         return separator.join(content).strip()
 
     return ""

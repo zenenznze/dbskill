@@ -1,5 +1,5 @@
 {
-  "version": "2.18.40",
-  "notice": "理论溯源现可独立调用，快速核验命题、理论来源与案例边界",
+  "version": "2.18.41",
+  "notice": "新增 dbs-reset：只读查询 Codex 配额与 Reset Credit，明确确认后才执行上游重置",
   "details_url": "https://github.com/dontbesilent2025/dbskill/commits/main"
 }

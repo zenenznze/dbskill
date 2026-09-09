@@ -18,12 +18,11 @@ description: >-
 - 用户问当前有几次 Codex reset、banked reset 或 reset credit。
 - 用户要查看 5 小时窗口、weekly 窗口、重置时间或 credit 到期时间。
 - 用户明确要求预览一次 reset，或在再次确认后实际执行 reset。
-- 需要区分 OpenAI 上游 reset 与 CPA/sub2api 本地 cooldown 清理。
 
 ## 不适用场景
 
 - 没有本机官方 Codex 登录状态，或用户要求输入、粘贴 access token。
-- 仅想清理 CPA、sub2api 或其他代理自己的 quota/cooldown 状态。
+- 仅想清理其他系统自己的本地 quota/cooldown 状态。
 - 用户没有明确确认，却要求调用会消耗 credit 的接口。
 - 试图修改 `~/.codex/auth.json`、Codex 会话、桌面应用或服务端额度。
 
@@ -60,8 +59,7 @@ description: >-
    的同一个 `idempotency_key`，不能重新生成 UUID。
 5. `reset` 与 `already_redeemed` 都是成功路径；成功后立即重新查询两个只读接口。
    `nothing_to_reset`、`no_credit` 和详情不足不能伪报成功。
-6. 本 Skill 不替 CPA/sub2api 清理本地调度器状态；如果它们仍把账号视为 cooldown，
-   应把“上游已 reset”和“代理本地恢复 routing”作为两个独立动作报告。
+6. 本 Skill 只处理官方 Codex 上游状态，不修改其他系统的本地调度或 routing 状态。
 
 ## 常见错误处理
 
@@ -105,7 +103,8 @@ description: >-
 
 ## Skill Handoffs
 
-- 新建、修改、评测本 Skill 交给 `joe-make`；安装、暴露或同步交给 `joe`。
-- 仓库校验、commit、push 和远端回读交给 `dev`。
+- 本 Skill 只属于 dbskill／DBS 技能系列。所有用户层面的技能选择、交接和后续导航，只在 DBS 系列内部进行。
+- 不调用任何外部 Skill，不把 DBS 业务任务转交给外部技能体系。
+- 本 Skill 只处理 Codex 配额与 Reset Credit；超出这个业务边界时停止当前流程，不替用户切换到外部 Skill。
 
 完成当前任务后直接结束。只有用户明确询问下一步，且当前环境已经安装 `/dbs` 时，简短提示：「下一步不确定时，可以输入 `/dbs`。」

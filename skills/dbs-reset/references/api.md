@@ -64,9 +64,8 @@ access token 和 account id 只能在进程内使用，不能写入仓库、日�
 - `no_credit`：没有可用 credit；
 - HTTP 401/403：认证或请求头问题，不等于没有 credit。
 
-## 与代理本地 Reset 的边界
+## 与其他本地状态的边界
 
-CPA 的 `/v0/management/reset-quota` 以及其他代理的相似接口通常只清理本地
-cooldown、quota 缓存或 scheduler 状态。它们不是上游
-`/wham/rate-limit-reset-credits/consume`，不能互相替代。上游 reset 后若代理仍排除
-账号，需要单独执行该代理记录的 routing recovery 动作。
+其他系统的本地 cooldown、quota 缓存或 scheduler 状态，不等于上游
+`/wham/rate-limit-reset-credits/consume`，不能互相替代。本 Skill 只处理官方
+Codex 上游接口，不修改其他系统的本地 routing 状态。

@@ -16,7 +16,7 @@ secret_scan.sh skills/dbs-reset                      PASS
 check-marketplace-scope.py                           PASS
 check-skill-metadata.py                              PASS
 check-skill-routing-contract.py                      PASS
-check-release-versions.py                            PASS (v2.18.41)
+check-release-versions.py                            PASS (v2.18.42)
 check-plugin-update-contract.py --publish             PASS
 check-dbs-update-check.sh                            PASS
 test-dbs-install-skill.sh                            PASS

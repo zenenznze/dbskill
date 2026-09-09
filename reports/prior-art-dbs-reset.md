@@ -21,7 +21,7 @@
 
 ## 原创贡献
 
-- 把“查询 OpenAI 上游 reset”与“清 CPA/sub2api 本地 cooldown”分成两个动作，避免把本地 routing 恢复误称为额度重置。
+- 把“查询 OpenAI 上游 reset”与“清其他系统的本地 cooldown”分成两个动作，避免把本地 routing 恢复误称为额度重置。
 - `check` 和 `consume` 分离；`consume` 没有 `--confirm` 时在发起网络请求前退出。
 - 查询输出只保留窗口、数量、状态、到期时间和 credit 标识，不输出 token、account ID、完整 credit ID 或原始响应。
 - 测试合同明确：真实本机验证最多查询和 dry-run，不调用上游 consume。
